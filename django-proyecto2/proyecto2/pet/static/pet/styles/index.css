@@ -1,0 +1,52 @@
+
+.div-container{
+    
+    border-radius: 8px;
+    max-width: 78%;
+    padding: 20px;
+    background-color: rgb(135, 93, 93);
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    
+}
+.div-texto{
+
+    text-align: center;
+    padding: 10px;
+    flex: 1;
+    font-size: 15px;
+    background-color:rgba(255, 192, 203, 0.475);
+    margin: 5px;
+
+}
+.div-img{
+    display: flex;
+   flex-direction: row;
+
+   justify-content: center;
+    width: 100%;
+    margin: 5px;
+    flex: 2;
+    
+}
+.div-img img{
+    object-fit: cover;
+    border: solid 9px pink;
+    max-width: 500px;
+    
+}
+
+
+.titulo{
+    font-size: xx-large;
+    padding: 15px;
+    
+    color:rgb(84, 64, 64);
+}
+.div-img{
+    height: 100%;
+    
+}
+

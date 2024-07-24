@@ -1,0 +1,42 @@
+{% extends 'pet/base.html' %}
+{% load static%}
+
+
+{% block titulo %}{% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'pet/styles/index.css' %}">
+    
+    
+    {% endblock %}
+{% block main %}
+<div class="titulo"><h1>Hozicolandia</h1></div>
+
+<div class="div-container">
+    {% if user.is_authenticated %}
+    <div class="div-texto">
+
+
+        <h1>control de Stock </h1>
+        <br>
+        <p>¡Hola! {{ user.username }} Bienvenido a Pet Stock, tu solución integral para la gestión de inventarios. En esta página, podrás:
+
+            Cargar nuevos productos: Agrega artículos a tu inventario con toda la información necesaria, como nombre, descripción, precio, cantidad y fotos.
+            
+            Editar productos existentes: Actualiza cualquier detalle de los productos en tu inventario, incluyendo precios, descripciones, cantidades disponibles y fotos.
+            
+            Eliminar productos: Borra productos del inventario que ya no estén disponibles o que desees eliminar por otras razones.
+            
+            Agregar fotos de productos: Incluye imágenes para identificar los productos de manera más clara y atractiva.
+            
+            Gestionar el stock: Monitorea y ajusta las cantidades de productos disponibles en tiempo real. </p>
+    </div>
+    {% endif %}
+    <div class="div-img">
+        <img src="{% static 'pet/img/pegro.jpg'%}" alt="pegrito">
+    </div>
+</div>
+<br><br>
+{{fecha_hora}}
+{% endblock %}
+
+

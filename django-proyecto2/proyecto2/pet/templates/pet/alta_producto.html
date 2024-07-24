@@ -1,0 +1,27 @@
+{% extends 'pet/base.html' %}
+{% load static%}
+
+
+{% block titulo %}Alta de producto{% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'pet/styles/alta_producto.css' %}">
+    
+    
+    {% endblock %}
+{% block main %}
+<h1>Alta arcticulo</h1>
+<div class="div-form">
+<form method="POST" action="{% url 'alta_producto' %}">
+{% csrf_token %}
+<!-- {{alta_producto_form}} -->
+{{formulario}}
+<br>
+<input type="submit" id="submit">
+</form>
+<div class="div-img">
+    <img src="{% static 'pet/img/pet shop (2).jpg'%}" alt="pegrito"ducto.imagen_url }>
+</div>
+</div>
+{{fecha_hora}}
+{% endblock %}
+

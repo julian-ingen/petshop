@@ -1,0 +1,19 @@
+{% extends 'pet/base.html' %}
+{% load static%}
+
+
+{% block titulo %}Alta de producto{% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'create_admin.css' %}">  
+
+    {% endblock %}
+{% block main %}
+    <h1>Crear Nuevo Administrador</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Crear Administrador</button>
+    </form>
+    {{fecha_hora}}
+    {% endblock %}
+    

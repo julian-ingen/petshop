@@ -1,0 +1,47 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static 'pet/styles/base.css' %}">
+    
+    {% block extra_css %} {% endblock %}
+</head>
+
+<body>
+    <div class="container">
+    <header class="header">
+        <nav class="barra-nav">
+           <ul>
+            <li><a class="nav-a" href="{% url 'index' %}">Inicio</a></li>
+            {% if user.is_authenticated %}<li><a  class="nav-a" href="{% url 'listado_articulos' %}">Listado de articulos</a></li>{% endif %}
+            {% if user.is_authenticated %}<li><a  class="nav-a" href="{% url 'alta_producto' %}">Alta de articulos</a></li>{% endif %}
+            {% if user.is_authenticated and user.is_superuser %}<li><a  class="nav-a" href="{% url 'create_admin' %}">Alta de administrador</a></li>{% endif %}
+            
+           </ul>
+        </nav>
+        <div class="boton-sesion">
+            {% if not user.is_authenticated %}<a class="login nav-a" href="{% url 'login' %}">login</a>{% endif %}
+            {% if user.is_authenticated %}<a class="logout nav-a" href="{% url 'logout' %}">logout</a>{% endif %}
+        </div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages  %}
+                <li {% if massage.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+    </header>
+   <main class="main">
+    {% block main %} {% endblock %}
+   </main>
+    <footer class="footer">
+        <p>todos los derechos reservados </p>
+    </footer>
+</div>
+</body>
+</html>

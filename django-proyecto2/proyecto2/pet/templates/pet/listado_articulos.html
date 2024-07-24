@@ -1,0 +1,34 @@
+{% extends 'pet/base.html' %}
+{% load static%}
+
+{% block titulo %}listado de articulos{% endblock %}
+    {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'pet/styles/listado_articulos.css' %}">
+    
+
+    {% endblock %}
+    {% block main %}
+    <h1>Listado de Artículos</h1>
+    <section class="container-section">
+        {% for producto in productos %}
+            <div class="article-div"> 
+                <div class="article-content">
+                    <div class="article-description">
+                        <p>nombre:{{ producto.nombre }}</p>
+                        <p>Descripcion:{{ producto.descripcion }}</p>
+                        <p>Producto:{{ producto.precio }}</p>
+                        <p>Ean:{{ producto.ean }}</p>
+                    </div>
+                    <div class="article-img">
+                        <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}">
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+           <div class="article-div">
+                <p>No hay artículos cargados</p>
+            </div>
+        {% endfor %}
+    </section>
+    {% endblock %}
+
