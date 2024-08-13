@@ -6,7 +6,6 @@ h1{
     padding: 15px;
     font-size: 50PX;
     font-style: initial;
-    color: rgb(84, 64, 64);
 }
 .div-form{
     width: 70%;
@@ -58,7 +57,7 @@ label{
     color: brown;
 
     padding: 10px;
-border-radius: 7px;
+
     border: none;
 background-color: rgb(131, 255, 127);
 

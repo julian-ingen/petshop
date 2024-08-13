@@ -2,7 +2,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import create_admin_view
+from .views import create_admin_view, editar_producto, borrar_producto, actualizar_precios
 
 
 urlpatterns = [
@@ -34,5 +34,9 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='pet/registration/password_reset_complete.html'), 
          name='password_reset_complete'),
     # otras URLs
+
+    path('editar/<int:pk>/', editar_producto, name='editar_producto'),
+    path('borrar/<int:pk>/', borrar_producto, name='borrar_producto'),
+    path('actualizar_precios/', actualizar_precios, name='actualizar_precios'),
 ]
 

@@ -1,0 +1,13 @@
+{% extends 'pet/base.html' %}
+
+{% block titulo %}Actualizar Precios{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'pet/styles/actualizar_precio.css' %}">{% endblock %}
+{% block main %}
+    <h1>Actualizar Precios</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Actualizar Precios</button>
+    </form>
+{% endblock %}

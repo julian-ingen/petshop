@@ -15,7 +15,8 @@ class Producto(models.Model):
     descripcion = models.CharField(max_length=100,verbose_name='descripcion')
     precio = models.IntegerField(verbose_name='precio')
     imagen_url = models.URLField(verbose_name="imagen_url")
-    ean =models.IntegerField(verbose_name='ean', unique =True)
+    ean =models.BigIntegerField(verbose_name='ean', unique =True)
+    empresa = models.CharField(max_length=100, verbose_name='Empresa', default='Desconocido')
 
     def __str__(self):
         return f"{self.nombre}| {self.descripcion}|${self.precio}" 

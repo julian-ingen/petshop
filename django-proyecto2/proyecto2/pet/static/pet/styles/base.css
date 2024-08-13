@@ -48,6 +48,10 @@
     padding: 4px;
     border-radius: 7px;
 }
+.nav-a:hover{
+    background-color: rgb(255, 103, 128)
+
+}
 .main{
     padding: 20px;
     display: flex;

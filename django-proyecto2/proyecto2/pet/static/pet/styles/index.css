@@ -2,23 +2,25 @@
 .div-container{
     
     border-radius: 8px;
-    max-width: 78%;
+    max-width: 80%;
+    height: 500px;
     padding: 20px;
-    background-color: rgb(135, 93, 93);
-
+    background-color: rgb(255, 255, 255);
+    margin: 15px;
     display: flex;
     align-items: center;
     flex-direction: row;
-    
+    height: auto;
 }
 .div-texto{
+    border: solid 9px rgb(84, 64, 64);
 
     text-align: center;
-    padding: 10px;
+    padding: 9px;
     flex: 1;
-    font-size: 15px;
+    font-size: 17.5px;
     background-color:rgba(255, 192, 203, 0.475);
-    margin: 5px;
+    margin: 15px;
 
 }
 .div-img{
@@ -27,14 +29,19 @@
 
    justify-content: center;
     width: 100%;
-    margin: 5px;
+    
     flex: 2;
     
 }
 .div-img img{
     object-fit: cover;
-    border: solid 9px pink;
+    border: solid 9px rgb(84, 64, 64);
     max-width: 500px;
+    height: 450px;
+    
+    margin-top: 15px;
+    
+    
     
 }
 

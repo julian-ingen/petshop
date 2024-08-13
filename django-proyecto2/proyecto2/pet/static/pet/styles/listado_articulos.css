@@ -1,4 +1,9 @@
 /* Estilo general para el contenedor de los artículos */
+h1{
+    color: rgb(84, 64, 64);
+    padding: 15px;
+    font-size: 45px;
+}
 .container-section {
     
 
@@ -23,19 +28,23 @@
     display: flex;
     flex-direction:column; /* Alinea los artículos en columna */
     justify-content: center;
-   align-items: center; /* Centra verticalmente el contenido */
+    /* Centra verticalmente el contenido */
     gap: 2px; /* Espacio entre la descripción y la imagen */
-    background-color: rgba(101, 70, 70, 0.454);
-    width:250px;
-    height: 300px;
-    
+    background-color: #fff;
+    width:200px;
+    height: auto;
+    border-radius: 7px;
+    padding: 10px;
     
 }
 
 /* Estilo para la sección de descripción del artículo */
 .article-description {
+    color:rgb(84, 64, 64);
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap:nowrap;
+    flex-direction: column;
+    align-items: baseline;
     flex: 1; /* Ocupa todo el espacio disponible */
     
 }
@@ -43,18 +52,15 @@
 /* Estilo para la imagen del artículo */
 .article-img img {
     object-fit: cover;
-    width:160px; /* Ajusta la imagen al ancho de su contenedor */
-    height: 150px; /* Mantiene la proporción de la imagen */
+    width:150px; /* Ajusta la imagen al ancho de su contenedor */
+    height: 135px; /* Mantiene la proporción de la imagen */
     padding: 10px;
     margin: 0;
     text-align: center;
 }
 
 /* Mensaje cuando no hay artículos cargados */
-.article-div p {
-    text-align: center; /* Centra el texto */
-    margin: 0; /* Elimina el margen por defecto */
-}
+
 
 /* Asegúrate de que la imagen tenga un tamaño adecuado */
 .article-img {
@@ -76,4 +82,59 @@
     .article-div {
         flex: 1 1 100%; /* Un artículo por fila en pantallas muy pequeñas */
     }
+}
+
+
+
+
+
+
+/* pet/styles/listado_articulos.css */
+
+
+.article-actions {
+    padding: 10px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start baseline;
+    border-top: 1px solid #ddd;
+    
+}
+.article-actions a{
+    margin:3px;
+    color:rgb(84, 64, 64);
+    text-align: justify;
+    align-content: center;
+}
+.article-actions a:hover{
+    background-color: palevioletred;
+}
+
+.search-form {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-form input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.search-form button {
+    padding: 8px 16px;
+    background-color: rgb(84, 64, 64);
+    color:pink;
+
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: rgb(131, 113, 113);
 }

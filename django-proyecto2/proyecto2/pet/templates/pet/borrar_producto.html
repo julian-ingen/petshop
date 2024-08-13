@@ -1,0 +1,21 @@
+<!-- templates/pet/borrar_producto.html -->
+{% extends 'pet/base.html' %}
+{% load static%}
+{% block titulo %}Confirmar Borrado{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'pet/styles/borrar.css' %}">  
+
+{% endblock %}
+
+
+
+{% block main %}
+    <h1>Confirmar Borrado</h1>
+    <p>¿Estás seguro de que deseas borrar el producto "{{ producto.nombre }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, borrar</button>
+        <a href="{% url 'listado_articulos' %}">Cancelar</a>
+    </form>
+{% endblock %}

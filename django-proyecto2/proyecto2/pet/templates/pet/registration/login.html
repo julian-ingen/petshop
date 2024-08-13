@@ -1,7 +1,7 @@
 {% extends "pet\base.html" %}
 {% load static%}
 
-{% block titulo %}login{% endblock %}
+{% block titulo %}Ingresar{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'pet/styles/login.css' %}">
@@ -37,10 +37,10 @@
 </tr>
 </table>
 
-<input type="submit" id="submit" value="Enviar" >
+<input type="submit" id="submit" value="Iniciar Sesion" >
 <input type="hidden" id="submit" name="next" value="{{ next }}">
 {# Assumes you set up the password_reset view in your URLconf #}
-<p id="submit"><a id="submit"  href="{% url 'password_reset' %}">recuperar contraseña </a></p>
+<p id="submit"><a id="submit"  href="{% url 'password_reset' %}">Recuperar contraseña </a></p>
 
 
 </form>

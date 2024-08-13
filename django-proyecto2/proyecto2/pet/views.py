@@ -1,15 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
 import datetime
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import *
-from django.shortcuts import redirect
 from django.contrib import messages
 from .models import Producto
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import logout
+from django.db.models import Q
 
 
 def index(request):
@@ -37,7 +36,15 @@ class ArticuloListView(LoginRequiredMixin, ListView):
     context_object_name='productos'
     template_name='pet/listado_articulos.html'
     ordering = ['ean']
-
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q', '')
+        
+        if query:
+            queryset = queryset.filter(
+                Q(nombre__icontains=query) | Q(empresa__icontains=query)
+            )
+        return queryset
 
 # def alta_profucto(request):
 #     context={}
@@ -79,6 +86,8 @@ def alta_producto(request):
     context['formulario']= formulario
     return render(request,'pet/alta_producto.html',context )
 
+# --------------------------------
+
 def mi_vista(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -86,7 +95,7 @@ def mi_vista(request):
     if user is not None:
         login(request,user)
     
-
+# ----------------------------------
 def cerrar_logout(request):
     logout(request)
     messages.success(request, 'Sesion cerrada')
@@ -108,3 +117,53 @@ def create_admin_view(request):
         form = CreateAdminForm()
 
     return render(request, 'pet/create_admin.html', {'form': form})
+
+# ---------------------------------------------
+@login_required
+def editar_producto(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    if request.method == 'POST':
+        formulario = AltaProductoModelForm(request.POST, instance=producto)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Producto actualizado con éxito')
+            return redirect('listado_articulos')
+    else:
+        formulario = AltaProductoModelForm(instance=producto)
+    return render(request, 'pet/alta_producto.html', {'formulario': formulario})
+
+@login_required
+def borrar_producto(request, pk):
+    producto = get_object_or_404(Producto, pk=pk)
+    if request.method == 'POST':
+        producto.delete()
+        messages.success(request, 'Producto borrado con éxito')
+        return redirect('listado_articulos')
+    return render(request, 'pet/borrar_producto.html', {'producto': producto})
+
+@login_required
+def actualizar_precios(request):
+    if request.method == 'POST':
+        form = ActualizarPreciosForm(request.POST)
+        if form.is_valid():
+            proveedor = form.cleaned_data['proveedor']
+            porcentaje_incremento = form.cleaned_data['porcentaje_incremento']
+            
+            # Filtrar productos por proveedor
+            productos = Producto.objects.filter(empresa=proveedor)
+            
+            if not productos.exists():
+                messages.error(request, 'No se encontraron productos para el proveedor especificado.')
+                return redirect('actualizar_precios')
+
+            # Actualizar precios de todos los productos del proveedor
+            for producto in productos:
+                producto.precio += producto.precio * (porcentaje_incremento / 100)
+                producto.save()
+            
+            messages.success(request, 'Precios actualizados con éxito')
+            return redirect('listado_articulos')
+    else:
+        form = ActualizarPreciosForm()
+    
+    return render(request, 'pet/actualizar_precios.html', {'form': form})
