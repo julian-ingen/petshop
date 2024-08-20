@@ -1,0 +1,35 @@
+main{
+    height: 100vh;
+    
+}
+h1{
+    color: rgb(84, 64, 64);
+    padding: 15px;
+    font-size: 50PX;
+    font-style: initial;
+}
+
+
+button{
+    color: brown;
+margin-top: 15px;
+    padding: 10px;
+border: none;
+background-color: rgb(131, 255, 127);
+}
+button:hover{
+    background-color: aquamarine;
+
+}
+a{
+    color: brown;
+    margin-top: 14px;
+        padding: 9px;
+    border: none;
+    background-color: rgb(255, 127, 127);
+    
+}
+a:hover{
+    background-color: red;
+
+}

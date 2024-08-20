@@ -1,0 +1,64 @@
+main{
+    height: 100vh;
+    
+}
+h1{
+    color: rgb(84, 64, 64);
+    padding: 15px;
+    font-size: 50PX;
+    font-style: initial;
+}
+
+
+
+form{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
+    flex: 1;
+    padding: 15PX;
+    margin: 10PX;
+    background-color: white;
+    width: 60%;
+    border-radius: 7px;
+
+}
+form p{
+    font-size: 20px;
+}
+.helptext {
+display: none;
+}z
+
+label,input{
+    border: none;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+
+}
+input{
+    background-color: transparent;
+    border-bottom: solid 2px maroon;
+
+}
+label{
+    color: brown;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+button{
+    color: brown;
+margin-top: 15px;
+    padding: 10px;
+border: none;
+background-color: rgb(131, 255, 127);
+}
+button:hover{
+    background-color: aquamarine;
+
+}
