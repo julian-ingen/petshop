@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-xkd3%78s!v=zs(y_1+j7p$-vkyn7m2!-j=g+b^)zsdm5m_zdyl
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = ['julianingen.pythonanywhere.com']
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'proyecto2.urls'
@@ -76,14 +77,22 @@ WSGI_APPLICATION = 'proyecto2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": { 
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "control_stock",
+#         "USER": "postgres",
+#         "PASSWORD": "codoacodo2023",
+#         "HOST": "127.0.0.1",
+#         "PORT": "5432", 
+#      } }
+import dj_database_url
+from decouple import config
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -121,10 +130,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATICFILES_DIR ={
+    os.path.join(BASE_DIR, 'staticfiles')
+}
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+ 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -132,7 +143,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'index'
-LOGoOUT_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+
 
 
 # settings.py
@@ -145,3 +157,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Para desarro
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = 'your-email@example.com'
 # EMAIL_HOST_PASSWORD = 'your-email-password'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
